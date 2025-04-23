@@ -1,11 +1,12 @@
-
-import { GoogleGenAI } from '@google/genai';
+import { GoogleGenAI } from "@google/genai";
 
 // Get API key from environment variable
 const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
 if (!API_KEY) {
-  throw new Error("Missing GEMINI_API_KEY environment variable. Please set it in your .env file.");
+  throw new Error(
+    "Missing GEMINI_API_KEY environment variable. Please set it in your .env file."
+  );
 }
 
 // Initialize the Google GenAI with API key
@@ -13,7 +14,7 @@ const genAI = new GoogleGenAI({ apiKey: API_KEY });
 
 // Define movie recommendation system prompt
 const MOVIE_RECOMMENDATION_PROMPT = `
-Role: You are CineMate, a super friendly, enthusiastic, and knowledgeable movie and TV show recommendation assistant. Think of yourself as that one friend everyone goes to for "what should I watch next?" advice.
+Role: You are Lets Stream AI, a super friendly, enthusiastic, and knowledgeable movie and TV show recommendation assistant. Think of yourself as that one friend everyone goes to for "what should I watch next?" advice.
 
 Core Mission: Your goal is to delight users by suggesting 2-3 highly relevant movie or TV show recommendations based directly on their stated preferences, mood, or past viewing history.
 
@@ -77,31 +78,31 @@ export const sendMessageToGemini = async (
   try {
     // Create a chat session
     const chat = genAI.chats.create({
-      model: 'gemini-2.0-flash-lite',
+      model: "gemini-2.0-flash-lite",
       config: {
         temperature: 0.7,
         topK: 40,
         topP: 0.95,
         maxOutputTokens: 1024,
-      }
+      },
     });
-    
+
     // Add system prompt if chat history is empty
     if (chatHistory.length === 0) {
       await chat.sendMessage({
-        message: MOVIE_RECOMMENDATION_PROMPT
+        message: MOVIE_RECOMMENDATION_PROMPT,
       });
     }
-    
+
     // Send the user message
     const result = await chat.sendMessage({
-      message: message
+      message: message,
     });
-    
-    return result.text || 'Sorry, I couldn\'t generate a response.';
+
+    return result.text || "Sorry, I couldn't generate a response.";
   } catch (error) {
-    console.error('Error communicating with Gemini API:', error);
-    return 'Sorry, I encountered an error while processing your request. Please try again later.';
+    console.error("Error communicating with Gemini API:", error);
+    return "Sorry, I encountered an error while processing your request. Please try again later.";
   }
 };
 
@@ -114,7 +115,7 @@ export const searchMedia = async (query: string): Promise<string> => {
   try {
     // Use the models API for one-off content generation
     const result = await genAI.models.generateContent({
-      model: 'gemini-2.0-flash',
+      model: "gemini-2.0-flash",
       contents: [
         {
           parts: [
@@ -123,20 +124,20 @@ export const searchMedia = async (query: string): Promise<string> => {
               Provide up to 3 results with title, year, brief description, genre, and TMDB ID.
               For each result, specify whether it's a movie or TV show by adding "Type: movie" or "Type: tv".
               Include the TMDB ID as "TMDB_ID: [id]" for each result.
-              Format each result in a clear, structured way that can be easily parsed.`
-            }
-          ]
-        }
+              Format each result in a clear, structured way that can be easily parsed.`,
+            },
+          ],
+        },
       ],
       config: {
         temperature: 0.7,
         maxOutputTokens: 1024,
-      }
+      },
     });
-    
-    return result.text || 'No results found.';
+
+    return result.text || "No results found.";
   } catch (error) {
-    console.error('Error searching media:', error);
-    return 'Sorry, I encountered an error while searching. Please try again later.';
+    console.error("Error searching media:", error);
+    return "Sorry, I encountered an error while searching. Please try again later.";
   }
 };

@@ -1,14 +1,14 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  ExternalLink, 
-  Github, 
-  Twitter, 
-  Facebook, 
-  Instagram, 
-  Mail, 
-  ChevronDown, 
+import {
+  ExternalLink,
+  Github,
+  Twitter,
+  Facebook,
+  Instagram,
+  Mail,
+  ChevronDown,
   Heart,
   Smartphone
 } from 'lucide-react';
@@ -19,7 +19,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   const isMobile = useIsMobile();
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
-  
+
   const toggleSection = (section: string) => {
     if (expandedSection === section) {
       setExpandedSection(null);
@@ -28,34 +28,33 @@ const Footer = () => {
     }
   };
 
-  const FooterSection = ({ 
-    title, 
-    children, 
-    id 
-  }: { 
-    title: string; 
-    children: React.ReactNode; 
+  const FooterSection = ({
+    title,
+    children,
+    id
+  }: {
+    title: string;
+    children: React.ReactNode;
     id: string;
   }) => {
     const isExpanded = expandedSection === id;
-    
+
     return (
       <div className="w-full">
         {isMobile ? (
           <div className="w-full">
-            <button 
+            <button
               onClick={() => toggleSection(id)}
               className="w-full flex justify-between items-center py-3 text-white font-medium"
             >
               <span>{title}</span>
-              <ChevronDown 
-                className={`h-4 w-4 transition-transform duration-200 ${isExpanded ? 'transform rotate-180' : ''}`} 
+              <ChevronDown
+                className={`h-4 w-4 transition-transform duration-200 ${isExpanded ? 'transform rotate-180' : ''}`}
               />
             </button>
-            <div 
-              className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                isExpanded ? 'max-h-60 opacity-100 mb-4' : 'max-h-0 opacity-0'
-              }`}
+            <div
+              className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? 'max-h-60 opacity-100 mb-4' : 'max-h-0 opacity-0'
+                }`}
             >
               {children}
             </div>
@@ -75,7 +74,7 @@ const Footer = () => {
     <footer className="mt-auto bg-gradient-to-b from-black/60 to-black border-t border-white/10 pt-8 pb-6">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         <div className={`${isMobile ? 'flex flex-col' : 'grid grid-cols-1 md:grid-cols-4 gap-8'}`}>
-          
+
           {/* About Section */}
           <FooterSection title="Let's Stream V2.0" id="about">
             <p className="text-white/70 text-sm mb-4">
@@ -88,7 +87,7 @@ const Footer = () => {
               </div>
             )}
           </FooterSection>
-          
+
           {/* Quick Links */}
           <FooterSection title="Explore" id="explore">
             <ul className="space-y-2 text-sm">
@@ -124,7 +123,7 @@ const Footer = () => {
               </li>
             </ul>
           </FooterSection>
-          
+
           {/* Legal */}
           <FooterSection title="Legal" id="legal">
             <ul className="space-y-2 text-sm">
@@ -154,40 +153,40 @@ const Footer = () => {
               </li>
             </ul>
           </FooterSection>
-          
+
           {/* Social */}
           <FooterSection title="Connect" id="connect">
             <div className="flex flex-wrap gap-2">
-              <a 
-                href="https://github.com/chintan992" 
+              <a
+                href="https://github.com/chintan992"
                 className="bg-white/5 hover:bg-accent/20 hover:scale-105 p-2 rounded-full transition-all duration-200"
                 aria-label="GitHub"
               >
                 <Github className="h-5 w-5 text-white" />
               </a>
-              <a 
-                href="https://x.com/sid992r" 
+              <a
+                href="https://x.com/sid992r"
                 className="bg-white/5 hover:bg-accent/20 hover:scale-105 p-2 rounded-full transition-all duration-200"
                 aria-label="Twitter"
               >
                 <Twitter className="h-5 w-5 text-white" />
               </a>
-              <a 
-                href="https://facebook.com/chintan992" 
+              <a
+                href="https://facebook.com/chintan992"
                 className="bg-white/5 hover:bg-accent/20 hover:scale-105 p-2 rounded-full transition-all duration-200"
                 aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5 text-white" />
               </a>
-              <a 
-                href="https://instagram.com/chintan992" 
+              <a
+                href="https://instagram.com/chintan992"
                 className="bg-white/5 hover:bg-accent/20 hover:scale-105 p-2 rounded-full transition-all duration-200"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5 text-white" />
               </a>
-              <a 
-                href="mailto:chintanr21@gmail.com" 
+              <a
+                href="mailto:chintanr21@gmail.com"
                 className="bg-white/5 hover:bg-accent/20 hover:scale-105 p-2 rounded-full transition-all duration-200"
                 aria-label="Email"
               >
@@ -196,8 +195,8 @@ const Footer = () => {
             </div>
             <p className="mt-4 text-white/50 text-xs flex items-center">
               <span className="mr-1">Powered by</span>
-              <a 
-                href="https://www.themoviedb.org/" 
+              <a
+                href="https://www.themoviedb.org/"
                 className="hover:text-accent transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -207,21 +206,21 @@ const Footer = () => {
             </p>
           </FooterSection>
         </div>
-        
+
         <div className="mt-8 pt-4 border-t border-white/10 text-center">
           <div className="flex flex-col md:flex-row justify-between items-center gap-2">
             <p className="text-white/50 text-xs flex items-center">
-              © {currentYear} Let's Stream V2.0. All rights reserved.
+              © {currentYear} Letsembed.cc. All rights reserved.
               <span className="inline-flex items-center mx-1">
-                Built with <Heart className="h-3 w-3 text-accent mx-1" fill="#E63462" /> by the community
+                Made with love.
               </span>
             </p>
-            
+
             <p className="text-white/50 text-xs hidden md:block">
               This site does not store any files on its server. All contents are provided by non-affiliated third parties.
             </p>
           </div>
-          
+
           {isMobile && (
             <p className="text-white/50 text-xs mt-2">
               This site does not store any files on its server.

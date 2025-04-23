@@ -28,7 +28,7 @@ const ChatbotWindow: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (input.trim()) {
       if (isSearchMode) {
         searchForMedia(input);
@@ -52,17 +52,17 @@ const ChatbotWindow: React.FC = () => {
     <Card className="fixed bottom-20 right-4 w-[350px] h-[500px] z-50 shadow-xl flex flex-col">
       <CardHeader className="pb-2">
         <div className="flex justify-between items-center">
-          <CardTitle className="text-lg">CineMate</CardTitle>
+          <CardTitle className="text-lg">Lets Stream AI</CardTitle>
           <Button variant="ghost" size="icon" onClick={closeChatbot}>
             <X className="h-5 w-5" />
           </Button>
         </div>
       </CardHeader>
-      
+
       <CardContent className="flex-1 overflow-y-auto p-4">
         {messages.length === 0 ? (
           <div className="h-full flex flex-col items-center justify-center text-center text-muted-foreground">
-            <p className="mb-2 font-semibold">Welcome to CineMate! 🎬</p>
+            <p className="mb-2 font-semibold">Welcome to Lets Stream! 🎬</p>
             <p className="mb-2">I can recommend movies and TV shows tailored to your tastes, or help you discover something new.</p>
             <ul className="mb-2 text-left text-sm list-disc list-inside">
               <li>Get instant recommendations based on your mood or favorite genres.</li>
@@ -87,19 +87,19 @@ const ChatbotWindow: React.FC = () => {
           </div>
         )}
       </CardContent>
-      
+
       <CardFooter className="border-t p-3">
         <form onSubmit={handleSubmit} className="flex w-full items-center space-x-2">
-          <Button 
-            type="button" 
-            variant="ghost" 
-            size="icon" 
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon"
             onClick={toggleSearchMode}
             className={isSearchMode ? 'text-primary' : ''}
           >
             <Search className="h-5 w-5" />
           </Button>
-          
+
           <Input
             ref={inputRef}
             placeholder={isSearchMode ? "Search for movies or shows..." : "Ask for recommendations..."}
@@ -108,7 +108,7 @@ const ChatbotWindow: React.FC = () => {
             className="flex-1"
             disabled={isLoading}
           />
-          
+
           <Button type="submit" size="icon" disabled={isLoading || !input.trim()}>
             {isLoading ? <Spinner size="sm" /> : <Send className="h-5 w-5" />}
           </Button>
